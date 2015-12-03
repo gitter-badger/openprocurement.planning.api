@@ -57,7 +57,7 @@ def save_plan(request):
         old_dateModified = plan.dateModified
         plan.dateModified = get_now()
         try:
-            plan.store(request.registry.db_plan)
+            plan.store(request.registry.db)
         except ModelValidationError, e:
             for i in e.message:
                 request.errors.add('body', i, e.message[i])
@@ -110,7 +110,7 @@ def set_logging_context(event):
 
 
 def extract_plan_adapter(request, plan_id):
-    db = request.registry.db_plan
+    db = request.registry.db
     doc = db.get(plan_id)
     if doc is None:
         request.errors.add('url', 'plan_id', 'Not Found')

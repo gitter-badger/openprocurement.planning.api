@@ -339,7 +339,7 @@ class PlansResource(object):
         plan = self.request.validated['plan']
         plan.id = plan_id
 
-        plan.planID = generate_plan_id(plan.enquiryPeriod.startDate, self.db, self.server_id)
+        plan.planID = generate_plan_id(get_now(), self.db, self.server_id)
         set_ownership(plan, self.request)
         self.request.validated['plan'] = plan
         self.request.validated['plan_src'] = {}
