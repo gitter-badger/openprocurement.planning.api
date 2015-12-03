@@ -17,17 +17,17 @@ class PlanTest(BaseWebTest):
         assert u.id is None
         assert u.rev is None
 
-        u.store(self.db_plan)
+        u.store(self.db)
 
         assert u.id is not None
         assert u.rev is not None
 
-        fromdb = self.db_plan.get(u.id)
+        fromdb = self.db.get(u.id)
 
         assert u.planID == fromdb['planID']
         assert u.doc_type == "Plan"
 
-        u.delete_instance(self.db_plan)
+        u.delete_instance(self.db)
 
 class PlanResourceTest(BaseWebTest):
 

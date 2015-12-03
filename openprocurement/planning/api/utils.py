@@ -49,8 +49,6 @@ def plan_serialize(request, plan_data, fields):
 
 def save_plan(request):
     plan = request.validated['plan']
-    if plan.mode == u'test':
-        set_modetest_titles(plan)
     patch = get_revision_changes(plan.serialize("plain"), request.validated['plan_src'])
     if patch:
         plan.revisions.append(Revision({'author': request.authenticated_userid, 'changes': patch, 'rev': plan.rev}))
